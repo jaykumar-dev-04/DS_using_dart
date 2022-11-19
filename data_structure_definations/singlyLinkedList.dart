@@ -15,10 +15,15 @@ class Node<T> {
 }
 
 class SinglyLinkedList<T> {
-  Node<T>? head = Node();
+  Node<T>? head = null;
 
   void insertAtStart(T data) {
-    Node<T> newNode = Node(data: data, next: head);
+    Node<T> newNode;
+    if (head == null) {
+      newNode = Node(data: data, next: null);
+    } else {
+      newNode = Node(data: data, next: head);
+    }
     head = newNode;
     print("[$data] added to list.");
   }
@@ -37,7 +42,7 @@ class SinglyLinkedList<T> {
       }
       temp.next = newNode;
     }
-    print("[${temp!.next!.data}] added to list.");
+    print("[${data}] added to list.");
   }
 
   void deleteAtStart() {
@@ -72,10 +77,10 @@ class SinglyLinkedList<T> {
     if (temp == null) {
       print("Linked list is empty.");
     } else {
-      do {
-        print(temp!.data);
+      while (temp != null) {
+        print(temp.data);
         temp = temp.next;
-      } while (temp!.next != null);
+      }
     }
   }
 }
