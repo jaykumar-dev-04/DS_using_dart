@@ -6,7 +6,7 @@
 
 import 'dart:io';
 
-import 'stack.dart';
+import 'data_structure_definations/stack.dart';
 
 void main(List<String> args) {
   String? dataStructure;
