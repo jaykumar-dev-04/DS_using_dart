@@ -60,11 +60,4 @@ class Stack<T> {
       }
     }
   }
-
-  void clear() {
-    for (var i = 0; i < stack!.length; i++) {
-      stack![i] = null;
-    }
-    print("Stack is empty.");
-  }
 }

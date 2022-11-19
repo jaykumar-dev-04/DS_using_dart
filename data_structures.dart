@@ -2,10 +2,12 @@
   This is the implementation of stack using array in dart
   Writer :- Patel Jaykumar
   Gmail :- jaykumar.dev.04@gmail.com
+  Git :- https://github.com/jaykumar-dev-04
 */
 
 import 'dart:io';
 
+import 'data_structure_definations/queue.dart';
 import 'data_structure_definations/stack.dart';
 
 void main(List<String> args) {
@@ -31,7 +33,7 @@ void main(List<String> args) {
         stackImplementation();
         break;
       case "2":
-        print("Data structure comming soon...");
+        queueImplementation();
         break;
       case "3":
         print("Data structure comming soon...");
@@ -75,6 +77,43 @@ stackImplementation() {
         break;
       case "3":
         stack.display();
+        break;
+      case "4":
+        print("Exit");
+        return;
+      default:
+        print("Please select valid option");
+    }
+  }
+}
+
+queueImplementation() {
+  String? selection;
+  int size;
+  print("\n");
+  stdout.write("Please enter the size of queue : ");
+  size = int.parse(stdin.readLineSync() ?? "0");
+  Queue<int> queue = Queue<int>(size: size);
+
+  while (true) {
+    print("\n");
+    print("[1] Push");
+    print("[2] Pop");
+    print("[3] Display");
+    print("[4] Exit");
+    stdout.write("Please select operation : ");
+    selection = stdin.readLineSync();
+    switch (selection) {
+      case "1":
+        stdout.write("Please enter data to insert : ");
+        int data = int.parse(stdin.readLineSync() ?? "0");
+        queue.push(data);
+        break;
+      case "2":
+        queue.pop();
+        break;
+      case "3":
+        queue.display();
         break;
       case "4":
         print("Exit");
