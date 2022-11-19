@@ -8,6 +8,7 @@
 import 'dart:collection';
 import 'dart:io';
 
+import 'data_structure_definations/doublyLinkedList.dart';
 import 'data_structure_definations/queue.dart';
 import 'data_structure_definations/singlyLinkedList.dart';
 import 'data_structure_definations/stack.dart';
@@ -41,7 +42,7 @@ void main(List<String> args) {
         singlyLinkedListImplementation();
         break;
       case "4":
-        print("Data structure comming soon...");
+        doublyLinkedListImplementation();
         break;
       case "5":
         print("Thank you.");
@@ -59,7 +60,6 @@ stackImplementation() {
   stdout.write("Please enter the size of stack : ");
   size = int.parse(stdin.readLineSync() ?? "0");
   Stack<int> stack = Stack<int>(size: size);
-
   while (true) {
     print("\n");
     print("[1] Push");
@@ -129,6 +129,48 @@ queueImplementation() {
 singlyLinkedListImplementation() {
   String? selection;
   SinglyLinkedList linkedList = SinglyLinkedList();
+  while (true) {
+    print("\n");
+    print("[1] Insert at start");
+    print("[2] Insert at end");
+    print("[3] Delete at start");
+    print("[4] Delete at end");
+    print("[5] Display");
+    print("[6] Exit");
+    stdout.write("Please select operation : ");
+    selection = stdin.readLineSync();
+    switch (selection) {
+      case "1":
+        stdout.write("Please enter data to insert : ");
+        int data = int.parse(stdin.readLineSync() ?? "0");
+        linkedList.insertAtStart(data);
+        break;
+      case "2":
+        stdout.write("Please enter data to insert : ");
+        int data = int.parse(stdin.readLineSync() ?? "0");
+        linkedList.insertAtEnd(data);
+        break;
+      case "3":
+        linkedList.deleteAtStart();
+        break;
+      case "4":
+        linkedList.deleteAtEnd();
+        break;
+      case "5":
+        linkedList.display();
+        break;
+      case "6":
+        print("Exit");
+        return;
+      default:
+        print("Please select valid option");
+    }
+  }
+}
+
+doublyLinkedListImplementation() {
+  String? selection;
+  DoublyLinkedList linkedList = DoublyLinkedList();
   while (true) {
     print("\n");
     print("[1] Insert at start");

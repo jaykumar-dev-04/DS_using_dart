@@ -6,23 +6,34 @@
 */
 
 class Node<T> {
+  Node<T>? prev;
   T? data;
   Node<T>? next;
   Node({
+    this.prev,
     this.data,
     this.next,
   });
 }
 
-class SinglyLinkedList<T> {
+class DoublyLinkedList<T> {
   Node<T>? head = null;
 
   void insertAtStart(T data) {
     Node<T> newNode;
     if (head == null) {
-      newNode = Node(data: data, next: null);
+      newNode = Node(
+        prev: null,
+        data: data,
+        next: null,
+      );
     } else {
-      newNode = Node(data: data, next: head);
+      newNode = Node(
+        prev: null,
+        data: data,
+        next: head,
+      );
+      head!.prev = newNode;
     }
     head = newNode;
     print("[$data] added to list.");
@@ -30,6 +41,7 @@ class SinglyLinkedList<T> {
 
   void insertAtEnd(T data) {
     Node<T> newNode = Node(
+      prev: null,
       data: data,
       next: null,
     );
@@ -40,6 +52,7 @@ class SinglyLinkedList<T> {
       while (temp!.next != null) {
         temp = temp.next;
       }
+      newNode.prev = temp;
       temp.next = newNode;
     }
     print("[${data}] added to list.");
@@ -51,6 +64,7 @@ class SinglyLinkedList<T> {
     } else {
       Node<T>? temp = head;
       head = temp!.next;
+      head!.prev = null;
       print("${temp.data} deleted successfully");
     }
   }
@@ -79,7 +93,8 @@ class SinglyLinkedList<T> {
       print("Linked list is empty.");
     } else {
       while (temp != null) {
-        print("[${temp.data}](${temp.hashCode})->[${temp.next.hashCode}]]");
+        print(
+            "[${temp.prev.hashCode}]<-[${temp.data}](${temp.hashCode})->[${temp.next.hashCode}]");
         temp = temp.next;
       }
     }
