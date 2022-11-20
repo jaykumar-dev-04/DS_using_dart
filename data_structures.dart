@@ -5,9 +5,9 @@
   Git :- https://github.com/jaykumar-dev-04
 */
 
-import 'dart:collection';
 import 'dart:io';
 
+import 'data_structure_definations/circularQueue.dart';
 import 'data_structure_definations/doublyLinkedList.dart';
 import 'data_structure_definations/queue.dart';
 import 'data_structure_definations/singlyLinkedList.dart';
@@ -26,9 +26,10 @@ void main(List<String> args) {
     print("\n");
     print("[1] Stack");
     print("[2] Queue");
-    print("[3] Singly Linked List");
-    print("[4] Doubly Linked List");
-    print("[5] Exit");
+    print("[3] Circular Queue");
+    print("[4] Singly Linked List");
+    print("[5] Doubly Linked List");
+    print("[6] Exit");
     stdout.write("Please select Data Structure : ");
     dataStructure = stdin.readLineSync();
     switch (dataStructure) {
@@ -39,12 +40,15 @@ void main(List<String> args) {
         queueImplementation();
         break;
       case "3":
-        singlyLinkedListImplementation();
+        circularQueueImplementation();
         break;
       case "4":
-        doublyLinkedListImplementation();
+        singlyLinkedListImplementation();
         break;
       case "5":
+        doublyLinkedListImplementation();
+        break;
+      case "6":
         print("Thank you.");
         exit(0);
       default:
@@ -96,6 +100,43 @@ queueImplementation() {
   stdout.write("Please enter the size of queue : ");
   size = int.parse(stdin.readLineSync() ?? "0");
   Queue<int> queue = Queue<int>(size: size);
+
+  while (true) {
+    print("\n");
+    print("[1] Push");
+    print("[2] Pop");
+    print("[3] Display");
+    print("[4] Exit");
+    stdout.write("Please select operation : ");
+    selection = stdin.readLineSync();
+    switch (selection) {
+      case "1":
+        stdout.write("Please enter data to insert : ");
+        int data = int.parse(stdin.readLineSync() ?? "0");
+        queue.push(data);
+        break;
+      case "2":
+        queue.pop();
+        break;
+      case "3":
+        queue.display();
+        break;
+      case "4":
+        print("Exit");
+        return;
+      default:
+        print("Please select valid option");
+    }
+  }
+}
+
+circularQueueImplementation() {
+  String? selection;
+  int size;
+  print("\n");
+  stdout.write("Please enter the size of queue : ");
+  size = int.parse(stdin.readLineSync() ?? "0");
+  CircularQueue<int> queue = CircularQueue<int>(size: size);
 
   while (true) {
     print("\n");
