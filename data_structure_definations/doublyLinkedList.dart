@@ -60,6 +60,27 @@ class DoublyLinkedList<T> {
     print("[${data}] added to list.");
   }
 
+  void insertAtIndex(T data, int index) {
+    Node<T> newNode = Node(
+      prev: null,
+      data: data,
+      next: null,
+    );
+    Node<T>? temp = head;
+    for (var i = 1; i < index; i++) {
+      if (temp!.next == null) {
+        print("Index does not found.");
+        return;
+      }
+      temp = temp.next;
+    }
+    newNode.prev = temp;
+    newNode.next = temp!.next;
+    temp.next!.prev = newNode;
+    temp.next = newNode;
+    print("[${data}] added at index [$index] in list.");
+  }
+
   void deleteAtStart() {
     if (head == null) {
       print("No data to delete");
@@ -89,6 +110,22 @@ class DoublyLinkedList<T> {
     }
   }
 
+  void deleteAtIndex(int index) {
+    Node<T>? temp = head;
+    for (var i = 1; i < index; i++) {
+      if (temp!.next == null) {
+        print("Index does not found.");
+        return;
+      }
+      temp = temp.next;
+    }
+    Node<T>? nodeAtIndex = temp!.next;
+    
+    temp.next = nodeAtIndex!.next;
+    temp.next!.prev = nodeAtIndex.prev;
+    print("[${nodeAtIndex.data}] deleted at index [$index] successfully");
+  }
+
   void display() {
     Node<T>? temp = head;
     if (temp == null) {
@@ -110,10 +147,12 @@ doublyLinkedListImplementation() {
     print("\n");
     print("[1] Insert at start");
     print("[2] Insert at end");
-    print("[3] Delete at start");
-    print("[4] Delete at end");
-    print("[5] Display");
-    print("[6] Exit");
+    print("[3] Insert at index");
+    print("[4] Delete at start");
+    print("[5] Delete at end");
+    print("[6] Delete at index");
+    print("[7] Display");
+    print("[8] Exit");
     stdout.write("Please select operation : ");
     selection = stdin.readLineSync();
     switch (selection) {
@@ -128,15 +167,27 @@ doublyLinkedListImplementation() {
         linkedList.insertAtEnd(data);
         break;
       case "3":
-        linkedList.deleteAtStart();
+        stdout.write("Please enter index (Note :- index starts from 0) : ");
+        int index = int.parse(stdin.readLineSync() ?? "0");
+        stdout.write("Please enter data to insert : ");
+        int data = int.parse(stdin.readLineSync() ?? "0");
+        linkedList.insertAtIndex(data, index);
         break;
       case "4":
-        linkedList.deleteAtEnd();
+        linkedList.deleteAtStart();
         break;
       case "5":
-        linkedList.display();
+        linkedList.deleteAtEnd();
         break;
       case "6":
+        stdout.write("Please enter index (Note :- index starts from 0) : ");
+        int index = int.parse(stdin.readLineSync() ?? "0");
+        linkedList.deleteAtIndex(index);
+        break;
+      case "7":
+        linkedList.display();
+        break;
+      case "8":
         print("Exit");
         return;
       default:
