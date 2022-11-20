@@ -61,3 +61,39 @@ class Stack<T> {
     }
   }
 }
+
+stackImplementation() {
+  String? selection;
+  int size;
+  print("\n");
+  stdout.write("Please enter the size of stack : ");
+  size = int.parse(stdin.readLineSync() ?? "0");
+  Stack<int> stack = Stack<int>(size: size);
+  while (true) {
+    print("\n");
+    print("[1] Push");
+    print("[2] Pop");
+    print("[3] Display");
+    print("[4] Exit");
+    stdout.write("Please select operation : ");
+    selection = stdin.readLineSync();
+    switch (selection) {
+      case "1":
+        stdout.write("Please enter data to insert : ");
+        int data = int.parse(stdin.readLineSync() ?? "0");
+        stack.push(data);
+        break;
+      case "2":
+        stack.pop();
+        break;
+      case "3":
+        stack.display();
+        break;
+      case "4":
+        print("Exit");
+        return;
+      default:
+        print("Please select valid option");
+    }
+  }
+}

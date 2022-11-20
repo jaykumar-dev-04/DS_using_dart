@@ -5,6 +5,8 @@
   Git :- https://github.com/jaykumar-dev-04
 */
 
+import 'dart:io';
+
 class Node<T> {
   Node<T>? prev;
   T? data;
@@ -97,6 +99,48 @@ class DoublyLinkedList<T> {
             "[${temp.prev.hashCode}]<-[${temp.data}](${temp.hashCode})->[${temp.next.hashCode}]");
         temp = temp.next;
       }
+    }
+  }
+}
+
+doublyLinkedListImplementation() {
+  String? selection;
+  DoublyLinkedList linkedList = DoublyLinkedList();
+  while (true) {
+    print("\n");
+    print("[1] Insert at start");
+    print("[2] Insert at end");
+    print("[3] Delete at start");
+    print("[4] Delete at end");
+    print("[5] Display");
+    print("[6] Exit");
+    stdout.write("Please select operation : ");
+    selection = stdin.readLineSync();
+    switch (selection) {
+      case "1":
+        stdout.write("Please enter data to insert : ");
+        int data = int.parse(stdin.readLineSync() ?? "0");
+        linkedList.insertAtStart(data);
+        break;
+      case "2":
+        stdout.write("Please enter data to insert : ");
+        int data = int.parse(stdin.readLineSync() ?? "0");
+        linkedList.insertAtEnd(data);
+        break;
+      case "3":
+        linkedList.deleteAtStart();
+        break;
+      case "4":
+        linkedList.deleteAtEnd();
+        break;
+      case "5":
+        linkedList.display();
+        break;
+      case "6":
+        print("Exit");
+        return;
+      default:
+        print("Please select valid option");
     }
   }
 }
